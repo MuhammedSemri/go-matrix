@@ -28,7 +28,7 @@ func Build(builder Builder) (Matrix,error){
 		err := fmt.Errorf("Error Matrix empty matrix")
 		return resultmtx,err
 	}
-	
+
 	resultmtx = genMatrix(len(builder), len(builder[0]))
 	for i, row := range builder {
 		for j, value := range row {
@@ -44,6 +44,8 @@ func (mtx Matrix) GetNewPos(rowPos,colPos int) int{
 	return rowPos * int(mtx[1]) + colPos +2   
 }
 
+
+
 func (mtx Matrix) getRowLen() int{
 	return int(mtx[0])
 } 
@@ -52,8 +54,28 @@ func (mtx Matrix) getColLen() int{
 	return int(mtx[1])
 } 
 
+func (mtx Matrix) GetRow(rowIndex int) Row{
+	row := make(Row, mtx.getRowLen())
+	for i := 0; i < mtx.getRowLen(); i++{
+		row[i] = mtx[mtx.GetNewPos(i, rowIndex)]
+	} 
+	return row
+}
 
+func (mtx Matrix) GetColumn(colIndex int) Row{
+	row := make(Row, mtx.getRowLen())
+	for i := 0; i < mtx.getRowLen(); i++{
+		row[i] = mtx[mtx.GetNewPos(colIndex, i)]
+	} 
+	return row
+}
 
+func (mtx Matrix) PrintMatrix(){
+	colSize := mtx.getColLen()
+	for i := 0; i < colSize; i++{
+		fmt.Println(mtx.GetColumn(i))
+	}
+}
 // Checks if two matrices sizes are equal returns true if equal
 func eqSize(mtx1,mtx2 Matrix) bool{
 	if mtx1.getRowLen() != mtx2.getRowLen() || mtx1.getColLen() != mtx2.getColLen(){
