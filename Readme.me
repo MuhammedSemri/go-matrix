@@ -1,0 +1,30 @@
+# To generate a new Matrix
+
+mtx := matrix.Build(
+    matrix.Builder{
+        matrix.Row{1,1,1},
+        matrix.Row{1,1,1},
+        matrix.Row{1,1,1},
+    }
+)
+
+# To add and Subtract two matricies 
+
+mtx1 := matrix.Build(
+    matrix.Builder{
+        matrix.Row{1,1,1},
+        matrix.Row{1,1,1},
+        matrix.Row{1,1,1},
+    }
+)
+
+mtx2 := matrix.Build(
+    matrix.Builder{
+        matrix.Row{1,1,1},
+        matrix.Row{1,1,1},
+        matrix.Row{1,1,1},
+    }
+)
+
+mtxResult := matrix.Add(mtx1,mtx2)
+mtxResult = matrix.Subtract(mtx1,mtx2)

@@ -22,13 +22,13 @@ func genMatrix(rowlen, colmlen int) Matrix{
 	return mtx
 }
 
-func (mtx Matrix)build(builder Builder) (Matrix,error){
+func Build(builder Builder) (Matrix,error){
 	var resultmtx Matrix
 	if len(builder) == 0 || len(builder[0]) == 0 {
 		err := fmt.Errorf("Error Matrix empty matrix")
 		return resultmtx,err
 	}
-
+	
 	resultmtx = genMatrix(len(builder), len(builder[0]))
 	for i, row := range builder {
 		for j, value := range row {
@@ -52,4 +52,12 @@ func (mtx Matrix) getColLen() int{
 	return int(mtx[1])
 } 
 
-func 
+
+
+// Checks if two matrices sizes are equal returns true if equal
+func eqSize(mtx1,mtx2 Matrix) bool{
+	if mtx1.getRowLen() != mtx2.getRowLen() || mtx1.getColLen() != mtx2.getColLen(){
+		return false
+	}
+	return true
+}
